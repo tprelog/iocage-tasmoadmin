@@ -1,7 +1,7 @@
 {
   "name": "tasmoadmin",                                                             
   "release": "11.2-RELEASE",                                                    
-  "artifact": "http://gitlab.local/troy/iocage-tasmoadmin.git", 
+  "artifact": "https://github.com/tprelog/iocage-tasmoadmin.git", 
   "pkgs": [
     "shells/bash",
     "devel/git",

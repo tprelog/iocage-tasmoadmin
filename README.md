@@ -8,7 +8,7 @@ Artifact file(s) for [TasmoAdmin](https://github.com/reloxx13/TasmoAdmin)
 
 **Download plugin and install**
 
-    wget -O /tmp/tasmoadmin.json http://gitlab.local/troy/iocage-tasmoadmin/raw/master/tasmoadmin.json
+    wget -O /tmp/tasmoadmin.json https://raw.githubusercontent.com/tprelog/iocage-tasmoadmin/master/tasmoadmin.json
     sudo iocage fetch -P dhcp=on vnet=on bpf=yes -n /tmp/tasmoadmin.json --branch 'master'
 
 ---
@@ -19,13 +19,13 @@ Artifact file(s) for [TasmoAdmin](https://github.com/reloxx13/TasmoAdmin)
 
 ##### Create a jail using a pkg-list to install requirements
 
-    wget -O /tmp/pkglist.json http://gitlab.local/troy/iocage-tasmoadmin/raw/master/pkg-list.json
+    wget -O /tmp/pkglist.json https://raw.githubusercontent.com/tprelog/iocage-tasmoadmin/master/pkg-list.json
     sudo iocage create -r 11.2-RELEASE boot=on dhcp=on bpf=yes vnet=on -p /tmp/pkglist.json -n tasmoadmin
 
 
 ##### Git TasmoAdmin and install
 
-    sudo iocage exec tasmoadmin git clone http://gitlab.local/troy/iocage-tasmoadmin.git /root/.iocage-tasmoadmin
+    sudo iocage exec tasmoadmin git clone https://github.com/tprelog/iocage-tasmoadmin.git /root/.iocage-tasmoadmin
     sudo iocage exec tasmoadmin bash /root/.iocage-tasmoadmin/post_install.sh standard
 
 ---
