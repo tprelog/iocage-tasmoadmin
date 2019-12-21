@@ -5,7 +5,7 @@
 **Download plugin and install**
 
     wget -O /tmp/tasmoadmin.json https://raw.githubusercontent.com/tprelog/iocage-tasmoadmin/11.3-RELEASE/tasmoadmin.json
-    sudo iocage fetch -P /tmp/tasmoadmin.json
+    sudo iocage fetch -P /tmp/tasmoadmin.json --branch '11.3-RELEASE'
 
  - You should now be able to use TasmoAdmin by entering `http://YOUR.TASMOADMIN.IP.ADDRESS` in your browser
  
