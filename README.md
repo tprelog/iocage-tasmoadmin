@@ -1,28 +1,53 @@
-### TasmoAdmin plugin for FreeNAS 11 using *nginx* and *php72*
+# iocage-tasmoadmin
+Artifact file(s) for [TasmoAdmin][1] using *nginx* and *php72*
 
-- This branch is for FreeNAS 11.2
+### This is a [FreeNAS Community Plugin][2]
 
-**Download plugin and install**
+**The current release is intended for FreeNAS 11.3 but should work with FreeNAS 11.2-U7 or later**
 
-    wget -O /tmp/tasmoadmin.json https://raw.githubusercontent.com/tprelog/iocage-tasmoadmin/11.2-RELEASE/tasmoadmin.json
-    sudo iocage fetch -P dhcp=on vnet=on bpf=yes -n /tmp/tasmoadmin.json --branch '11.2-RELEASE'
+- This will create an 11.3-RELEASE iocage-jail for [TasmoAdmin][1]
 
- - You should now be able to use TasmoAdmin by entering `http://YOUR.TASMOADMIN.IP.ADDRESS` in your browser
+#### Installation
+
+**TasmoAdmin is available from the Communtity Plugins page on FreeNAS 11.3**
+
+![img][FreeNAS_plugins]
 
 ---
 
-###### Reset the TasmoAdmin login
+**FreeNAS 11.2-U7**
+<details><summary>Click Here</summary>
+<p>
 
-    sudo iocage exec tasmoadmin tasmo-pwreset
+##### plugin-jail
 
-###### To see a list of jails as well as their ip address
+*The 11.3-RELEASE should work on FreeNAS 11.2-U7 or later*
 
-    sudo iocage list -l
-    +-----+---------------+------+-------+----------+------------------+-----------------------+-----+----------+
-    | JID |     NAME      | BOOT | STATE |   TYPE   |     RELEASE      |          IP4          | IP6 | TEMPLATE |
-    +=====+===============+======+=======+==========+==================+=======================+=====+==========+
-    |  1  | tasmoadmin    | on   | up    | pluginv2 | 11.2-RELEASE-p15 | epair0b|192.168.1.99  | -   | -        |
-    +-----+---------------+------+-------+----------+------------------+-----------------------+-----+----------+
+It is possible to install this plugin on FreeNAS 11.2-U7 using the console.
 
-- Last tested on FreeNAS-11.2-U7
-- More information about [iocage plugins](https://doc.freenas.org/11.2/plugins.html) and [iocage jails](https://doc.freenas.org/11.2/jails.html) can be found in the [FreeNAS guide](https://doc.freenas.org/11.2/intro.html#introduction)
+```bash
+wget -O /tmp/tasmoadmin.json https://raw.githubusercontent.com/tprelog/freenas-plugin-index/11.3-RELEASE/tasmoadmin.json
+iocage fetch -P dhcp=on vnet=on vnet_default_interface=auto bpf=yes boot=on -n /tmp/tasmoadmin.json --branch 11.3-RELEASE
+```
+
+</p>
+</details>
+
+
+---
+
+##### Reset the TasmoAdmin login password
+```bash
+sudo iocage exec tasmoadmin tasmo-pwreset
+```
+
+---
+
+###### Current artifact files can be found in the [11.3-RELEASE branch][4]
+
+[FreeNAS_plugins]: _img/FreeNAS_tasmoadmin.png
+
+[1]: https://tasmoadmin.org/
+[2]: https://www.freenas.org/plugins/
+[3]: https://github.com/tprelog/freenas-plugin-index
+[4]: https://github.com/tprelog/iocage-tasmoadmin/tree/11.3-RELEASE
