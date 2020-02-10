@@ -9,7 +9,7 @@ Artifact file(s) for [TasmoAdmin][1] using *nginx* and *php72*
 
 #### Installation
 
-**TasmoAdmin is available from the Communtity Plugins page on FreeNAS 11.3**
+**TasmoAdmin is available from the Community Plugins page on FreeNAS 11.3**
 
 ![img][FreeNAS_plugins]
 
