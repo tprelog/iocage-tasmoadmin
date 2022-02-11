@@ -1,32 +1,26 @@
-#!/bin/sh
-# reset login for TasmoAdmin
+#!/usr/bin/env bash
 
-tasmo_pw_reset () {
+## Reset the login for TasmoAdmin web UI
+if [ -f "${config:=/usr/local/www/tasmoadmin/data/MyConfig.json}" ];then
+  username=$(grep username "${config}" | cut -d '"' -f 4)
+  password=$(grep password "${config}" | cut -d '"' -f 4)
+else
+  echo "configuration not found" ; exit
+fi
 
-  local cfg="/usr/local/www/tasmoadmin/data/MyConfig.json"
-  local U=$(cat "${cfg}" | grep username | cut -d '"' -f 4)
-  local P=$(cat "${cfg}" | grep password | cut -d '"' -f 4)
-
-  prompt_yes () {     # prompt [YES|no]  
-    while true; do
-      read -r -p "${1} [Y/n]: " REPLY
-      case $REPLY in
-        [qQ]) echo ; echo "Goodbye!"; exit ;;
-        [yY]|[yY][eE][sS]|"") echo ; ANSWER=Y ; return ;;
-        [nN]|[nN][oO]) echo ; ANSWER=N ; return 1 ;;
-        *) printf " \033[31m %s \n\033[0m" " ! Invalid Input Received"
-      esac
-    done
-  }
-
-  echo "Your User Name is: "${U}""
-  prompt_yes "You are about to reset your login!"
-  if [ "${ANSWER}" = "Y" ]; then
-    sed -i .old -e "s/"${U}"/""/; s/"${P}"/""/" "${cfg}" && echo "Login Reset" || ee "${cfg}"
-    exit
-  else
-    echo "Goodbye"
-  fi
-} 
-
-tasmo_pw_reset
+if [ -n "${username}" ]; then
+  while true; do
+    read reply -rp "reset login for: ${username} [Y/n]: "
+    case "${reply}" in
+      [yY]|[yY][eE][sS]|"")
+        sed -i '' -e "s/${username}/""/; s/${password}/""/" "${config}" \
+          && echo "login reset"
+        exit ;;
+      [nN]|[nN][oO])
+        exit ;;
+      *) echo "Please answer yes or no." ;;
+    esac
+  done
+else
+  echo "login not set"
+fi
